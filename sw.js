@@ -1,9 +1,9 @@
-const CACHE_NAME = 'ww-cache-v2';
+const CACHE_NAME = 'ww-cache-v3';
 const CORE_ASSETS = [
   './',
   './index.html',
   './app.js',
-  './components.js',
+  './components/components.js',
   './store.js',
   './utils.js',
   './manifest.json',
