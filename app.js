@@ -1,6 +1,6 @@
 import { h, render } from 'https://esm.sh/preact@10.29.0';
 import { useState, useEffect } from 'https://esm.sh/preact@10.29.0/hooks';
-import { html } from 'https://esm.sh/htm@3.1.1/preact?external=preact';
+import { html } from 'https://esm.sh/htm@3.1.1/preact';
 
 import { dbGetAll, dbPut, drainSyncQueue } from './store.js';
 import { SEED_STR, SEED_CAR } from './utils.js';

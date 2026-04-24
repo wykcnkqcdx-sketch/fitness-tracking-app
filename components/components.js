@@ -1,6 +1,6 @@
 import { h } from 'https://esm.sh/preact@10.29.0';
 import { useState, useEffect } from 'https://esm.sh/preact@10.29.0/hooks';
-import { html } from 'https://esm.sh/htm@3.1.1/preact?external=preact';
+import { html } from 'https://esm.sh/htm@3.1.1/preact';
 import { hrCol, zoneName, hrZoneFrom, todayISO, fmtLabel, uid, calcVol, calcTotalVol, topWt, epley, currentPlanWeek, PLAN, EXERCISE_LIB, CARDIO_TYPES, EFFORT_LBL } from '../utils.js';
 import { dbGetAll, dbPut, dbDelete, queueSync, drainSyncQueue, getSyncConfig, setSyncConfig } from '../store.js';
 
