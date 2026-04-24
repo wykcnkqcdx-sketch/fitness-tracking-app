@@ -9,7 +9,7 @@ import { SEED_STR, SEED_CAR } from './utils.js';
 import { 
   HomeScreen, StrengthScreen, CardioScreen, PlanScreen, 
   ProgressScreen, BodyScreen, SyncScreen, Nav, RestTimer 
-} from './components.js';
+} from './components/components.js';
 
 function App() {
   const [tab, setTab] = useState('home');
@@ -45,10 +45,10 @@ function App() {
   return html`
     <div class="h-full flex flex-col bg-[#03070b]">
       ${tab === 'home' ? html`<${HomeScreen} strSessions=${strSessions} carSessions=${carSessions}/>` : null}
-      ${tab === 'strength' ? html`<${StrengthScreen}/>` : null}
-      ${tab === 'cardio' ? html`<${CardioScreen}/>` : null}
-      ${tab === 'plan' ? html`<${PlanScreen}/>` : null}
-      ${tab === 'progress' ? html`<${ProgressScreen}/>` : null}
+      ${tab === 'strength' ? html`<${StrengthScreen} strSessions=${strSessions} setSessions=${setStrSessions}/>` : null}
+      ${tab === 'cardio' ? html`<${CardioScreen} carSessions=${carSessions} setSessions=${setCarSessions}/>` : null}
+      ${tab === 'plan' ? html`<${PlanScreen} strSessions=${strSessions} carSessions=${carSessions} setStrSessions=${setStrSessions} setCarSessions=${setCarSessions}/>` : null}
+      ${tab === 'progress' ? html`<${ProgressScreen} strSessions=${strSessions} carSessions=${carSessions}/>` : null}
       ${tab === 'body' ? html`<${BodyScreen}/>` : null}
       ${tab === 'sync' ? html`<${SyncScreen}/>` : null}
 
