@@ -9,14 +9,36 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="theme-color" content="#03070b">
   <meta name="mobile-web-app-capable" content="yes">
-
   <style>
-    /* Tactical neon styles (already in your styles.css — kept for instant load) */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+    .boot-fallback{min-height:100vh;background:#03070b;color:#00f3ff;display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.22em;padding:24px;text-align:center}
+    .boot-fallback.error{align-items:flex-start;color:#e2e4ef;letter-spacing:0;text-align:left}
+    .boot-fallback.error pre{white-space:pre-wrap;word-break:break-word;color:#ffb000;background:#020508;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px;max-width:760px;width:100%;overflow:auto}
   </style>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app"><div class="boot-fallback">LOADING TACTICAL CORE...</div></div>
+  <noscript><div class="boot-fallback error">JavaScript is required to run WemyssWorkouts.</div></noscript>
+  <script>
+    function showBootError(message, detail) {
+      var root = document.getElementById('app');
+      if (!root || root.dataset.rendered === 'true') return;
+      root.innerHTML = '<div class="boot-fallback error"><pre>' + String(message || 'App failed to load') + '\n\n' + String(detail || '') + '</pre></div>';
+    }
+    window.addEventListener('error', function(event) {
+      showBootError(event.message, event.filename ? event.filename + ':' + event.lineno + ':' + event.colno : '');
+    });
+    window.addEventListener('unhandledrejection', function(event) {
+      var reason = event.reason || {};
+      showBootError(reason.message || 'App failed to load', reason.stack || String(reason));
+    });
+    setTimeout(function() {
+      var root = document.getElementById('app');
+      if (root && root.querySelector('.boot-fallback')) {
+        showBootError('App startup timed out.', 'Check the browser console for a blocked or missing module.');
+      }
+    }, 12000);
+  </script>
   <script type="module" src="./app.js"></script>
 </body>
 </html>
